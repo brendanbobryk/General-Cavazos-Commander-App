@@ -6,7 +6,7 @@ import org.json.simple.*;
 public class App {
 
     public static void main(String[] args) {
-        String fileName = "/Users/jerom/Documents/GitHub/class-java/general-cavazos/undoredo/src/main/java/com/cavazos/commands.json";
+        String fileName = "C:/Users/Brendan/Documents/GitHub/General-Cavazos-Commander-App/demo/src/main/java/com/example/commands.json";
 
         // read coammands
         JSONArray commandJSONArray = JSONFile.readArray(fileName);
