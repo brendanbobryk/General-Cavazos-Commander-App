@@ -15,20 +15,19 @@ public class App {
         // read commands
         JSONArray commandJSONArray = JSONFile.readArray(fileName);
         String[] commandArray = getCommandArray(commandJSONArray);
-        // System.out.println(commandArray);
 
         String selection = "";
 
         while (!selection.equalsIgnoreCase("q")) {
             System.out.println(
-                    "---------------------------------------------------\nGeneral Cavazos Commander App\n---------------------------------------------------");
+                    "---------------------------------------------------------------------------------\nGeneral Cavazos Commander App\n---------------------------------------------------------------------------------");
             System.out.println("i\tIssue a command");
             System.out.println("l\tList all of the commands");
             System.out.println("u\tUndo the last command that was issued");
             System.out.println("r\tRedo the last command that was issued");
             System.out.println("q\tQuit");
             System.out.printf(
-                    "---------------------------------------------------\nEnter a command: ");
+                    "---------------------------------------------------------------------------------\nEnter a command: ");
             selection = input.nextLine().trim();
             switch (selection.toLowerCase()) {
                 // Issue a command
@@ -38,25 +37,19 @@ public class App {
                     break;
                 // List all of the commands
                 case "l":
+                    System.out.println("[LIST OF COMMANDS]: ");
+                    print(commandArray);
                     break;
                 // Undo the last command that was issued
                 case "u":
+                    System.out.printf("[UNDO COMMAND ISSUED]: General Cavazos orders the troops to undo: ");
                     break;
                 // Redo the last command that was issued
                 case "r":
+                    System.out.printf("[REDO COMMAND ISSUED]: General Cavazos orders the troops to redo: ");
                     break;
             }
         }
-
-        /*
-         * // print list of all commands
-         * System.out.println("----- List of all commands -----");
-         * print(commandArray);
-         * 
-         * System.out.println(
-         * "----- Issuing 5 random commands from General Cavazos -----");
-         * randomCommand(commandArray, 5);
-         */
 
         System.out.println("Thank you General Cavazos!");
 
@@ -73,7 +66,7 @@ public class App {
     // print command array
     public static void print(String[] commandArray) {
         System.out.printf("Number\tCommand\n");
-        System.out.printf("------\t---------------\n");
+        System.out.printf("---------------------------------------------------------------------------------\n");
         for (int i = 0; i < commandArray.length; i++) {
             System.out.printf("%04d\t%s\n", i, commandArray[i]);
         }
