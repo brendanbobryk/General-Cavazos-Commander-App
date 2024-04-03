@@ -1,6 +1,8 @@
 package com.example;
 
 import java.util.Random;
+import java.util.Scanner;
+
 import org.json.simple.*;
 
 public class App {
@@ -8,18 +10,39 @@ public class App {
     public static void main(String[] args) {
         String fileName = "C:/Users/Brendan/Documents/GitHub/General-Cavazos-Commander-App/demo/src/main/java/com/example/commands.json";
 
-        // read coammands
+        Scanner input = new Scanner(System.in);
+
+        // read commands
         JSONArray commandJSONArray = JSONFile.readArray(fileName);
         String[] commandArray = getCommandArray(commandJSONArray);
-        System.out.println(commandArray);
+        // System.out.println(commandArray);
 
-        // print list of all commands
-        System.out.println("----- List of all commands -----");
-        print(commandArray);
+        String selection = "";
 
-        System.out.println(
-                "----- Issuing 5 random commands from General Cavazos -----");
-        randomCommand(commandArray, 5);
+        while (!selection.equalsIgnoreCase("q")) {
+            System.out.printf(
+                    "---------------------------------------------------\nGeneral Cavazos Commander App\n---------------------------------------------------\n");
+            System.out.println("i\tIssue a command");
+            System.out.println("l\tList all of the commands");
+            System.out.println("u\tUndo the last command that was issued");
+            System.out.println("r\tRedo the last command that was issued");
+            System.out.println("q\tQuit");
+            System.out.printf(
+                    "---------------------------------------------------\nEnter a command: ");
+            selection = input.nextLine().trim();
+        }
+
+        /*
+         * // print list of all commands
+         * System.out.println("----- List of all commands -----");
+         * print(commandArray);
+         * 
+         * System.out.println(
+         * "----- Issuing 5 random commands from General Cavazos -----");
+         * randomCommand(commandArray, 5);
+         */
+
+        input.close();
     }
 
     // randomly issue commands from General Cavazos
