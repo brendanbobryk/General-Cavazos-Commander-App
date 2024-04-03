@@ -20,8 +20,8 @@ public class App {
         String selection = "";
 
         while (!selection.equalsIgnoreCase("q")) {
-            System.out.printf(
-                    "---------------------------------------------------\nGeneral Cavazos Commander App\n---------------------------------------------------\n");
+            System.out.println(
+                    "---------------------------------------------------\nGeneral Cavazos Commander App\n---------------------------------------------------");
             System.out.println("i\tIssue a command");
             System.out.println("l\tList all of the commands");
             System.out.println("u\tUndo the last command that was issued");
@@ -30,6 +30,22 @@ public class App {
             System.out.printf(
                     "---------------------------------------------------\nEnter a command: ");
             selection = input.nextLine().trim();
+            switch (selection.toLowerCase()) {
+                // Issue a command
+                case "i":
+                    System.out.printf("[COMMAND ISSUED]: General Cavazos orders the troops to do: ");
+                    randomCommand(commandArray, 1);
+                    break;
+                // List all of the commands
+                case "l":
+                    break;
+                // Undo the last command that was issued
+                case "u":
+                    break;
+                // Redo the last command that was issued
+                case "r":
+                    break;
+            }
         }
 
         /*
@@ -42,18 +58,16 @@ public class App {
          * randomCommand(commandArray, 5);
          */
 
+        System.out.println("Thank you General Cavazos!");
+
         input.close();
     }
 
-    // randomly issue commands from General Cavazos
+    // randomly issues a command from General Cavazos
     public static void randomCommand(String[] commandArray, int numCommand) {
         Random rand = new Random();
-        System.out.printf("Number\tCommand\n");
-        System.out.printf("------\t---------------\n");
-        for (int i = 0; i < numCommand; i++) {
-            int randIndex = rand.nextInt(commandArray.length);
-            System.out.printf("%04d\t%s\n", i, commandArray[randIndex]);
-        }
+        int randIndex = rand.nextInt(commandArray.length);
+        System.out.println(commandArray[randIndex]);
     }
 
     // print command array
