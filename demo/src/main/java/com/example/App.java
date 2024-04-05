@@ -11,8 +11,10 @@ public class App {
     public static Stack<String> undoStack = new Stack<String>();
 
     public static void main(String[] args) {
+        // file path for json file of commands
         String fileName = "C:/Users/Brendan/Documents/GitHub/General-Cavazos-Commander-App/demo/src/main/java/com/example/commands.json";
 
+        // creates scanner
         Scanner input = new Scanner(System.in);
 
         // read commands
@@ -24,6 +26,7 @@ public class App {
         String command = "";
 
         while (!selection.equalsIgnoreCase("q")) {
+            // prints menu
             System.out.println(
                     "---------------------------------------------------------------------------------\nGeneral Cavazos Commander App\n---------------------------------------------------------------------------------");
             System.out.println("i\tIssue a command");
@@ -33,6 +36,7 @@ public class App {
             System.out.println("q\tQuit");
             System.out.printf(
                     "---------------------------------------------------------------------------------\nEnter a command: ");
+            // retrieve user input
             selection = input.nextLine().trim();
             switch (selection.toLowerCase()) {
                 // Issue a command
@@ -52,7 +56,7 @@ public class App {
                         command = undoStack.pop();
                         redoStack.push(command);
                         System.out.println(command);
-                    } else {
+                    } else { // prints error if stack is empty
                         System.out.println("[ERROR]: There are no commands to undo. Please issue a command.");
                     }
                     break;
@@ -63,7 +67,7 @@ public class App {
                         command = redoStack.pop();
                         undoStack.push(command);
                         System.out.println(command);
-                    } else {
+                    } else { // prints error if stack is empty
                         System.out.println("[ERROR]: There are no commands to redo. Please issue a command.");
                     }
 
@@ -71,8 +75,10 @@ public class App {
             }
         }
 
+        // prompt for when program closes
         System.out.println("Thank you General Cavazos!");
 
+        // closes scanner
         input.close();
     }
 
