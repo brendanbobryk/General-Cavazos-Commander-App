@@ -2,10 +2,13 @@ package com.example;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Stack;
 
 import org.json.simple.*;
 
 public class App {
+
+    public static Stack<String> undoStack = new Stack<String>();
 
     public static void main(String[] args) {
         String fileName = "C:/Users/Brendan/Documents/GitHub/General-Cavazos-Commander-App/demo/src/main/java/com/example/commands.json";
@@ -17,6 +20,7 @@ public class App {
         String[] commandArray = getCommandArray(commandJSONArray);
 
         String selection = "";
+        String command = "";
 
         while (!selection.equalsIgnoreCase("q")) {
             System.out.println(
@@ -42,7 +46,13 @@ public class App {
                     break;
                 // Undo the last command that was issued
                 case "u":
-                    System.out.printf("[UNDO COMMAND ISSUED]: General Cavazos orders the troops to undo: ");
+                    if (!undoStack.empty()) {
+                        System.out.printf("[UNDO COMMAND ISSUED]: General Cavazos orders the troops to undo: ");
+                        command = undoStack.pop();
+                        System.out.println(command);
+                    } else {
+                        System.out.println("[ERROR]: There are no commands to undo. Please issue a command.");
+                    }
                     break;
                 // Redo the last command that was issued
                 case "r":
@@ -60,6 +70,7 @@ public class App {
     public static void randomCommand(String[] commandArray, int numCommand) {
         Random rand = new Random();
         int randIndex = rand.nextInt(commandArray.length);
+        undoStack.push(commandArray[randIndex]);
         System.out.println(commandArray[randIndex]);
     }
 
