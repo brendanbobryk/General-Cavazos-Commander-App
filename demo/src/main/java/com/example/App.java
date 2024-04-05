@@ -19,6 +19,7 @@ public class App {
         JSONArray commandJSONArray = JSONFile.readArray(fileName);
         String[] commandArray = getCommandArray(commandJSONArray);
 
+        Stack<String> redoStack = new Stack<String>();
         String selection = "";
         String command = "";
 
@@ -49,6 +50,7 @@ public class App {
                     if (!undoStack.empty()) {
                         System.out.printf("[UNDO COMMAND ISSUED]: General Cavazos orders the troops to undo: ");
                         command = undoStack.pop();
+                        redoStack.push(command);
                         System.out.println(command);
                     } else {
                         System.out.println("[ERROR]: There are no commands to undo. Please issue a command.");
@@ -56,7 +58,15 @@ public class App {
                     break;
                 // Redo the last command that was issued
                 case "r":
-                    System.out.printf("[REDO COMMAND ISSUED]: General Cavazos orders the troops to redo: ");
+                    if (!redoStack.empty()) {
+                        System.out.printf("[REDO COMMAND ISSUED]: General Cavazos orders the troops to redo: ");
+                        command = redoStack.pop();
+                        undoStack.push(command);
+                        System.out.println(command);
+                    } else {
+                        System.out.println("[ERROR]: There are no commands to redo. Please issue a command.");
+                    }
+
                     break;
             }
         }
